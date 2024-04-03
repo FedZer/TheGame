@@ -1,0 +1,94 @@
+---
+title: "TheGame"
+author: "Federico Zerbetto"
+date: "2024-03-25"
+output: html_document
+---
+
+## Strategia Naive
+
+Ogni giocatore gioca il numero minimo di carte, una alla volta, giocando la carta più vicina a quelle delle pile.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+data_naive <- read.csv("results_million.csv")
+summary(data_naive)
+```
+```{r}
+freq <- table(data_naive$cards)
+
+freq_zero <- as.numeric(freq[names(freq) == 0])
+perc_zero <- freq_zero / nrow(data_naive) * 100
+```
+
+Numero di partite: `r nrow(data)`
+
+La percentuale di vittorie è `r perc_zero`%
+
+
+## Grafici
+
+Distribuzione carte rimanenti.
+
+```{r}
+h <- hist(data_naive$cards, breaks=max(data_naive$cards), main="Distribuzione dei valori di result", xlab="Valore", ylab="Frequenza")
+```
+
+## Strategia Random
+
+Ogni giocatore gioca il numero minimo di carte causalmente.
+
+```{r}
+data_rand <- read.csv("results_random.csv")
+summary(data_rand)
+```
+```{r}
+freq <- table(data_rand$cards)
+
+freq_zero <- as.numeric(freq[names(freq) == 0])
+perc_zero <- freq_zero / nrow(data_rand) * 100
+```
+
+Numero di partite: `r nrow(data_rand)`
+
+La percentuale di vittorie è `r perc_zero`%
+
+
+## Grafici
+
+Distribuzione carte rimanenti.
+
+```{r}
+h <- hist(data_rand$cards, breaks=max(data_rand$cards), main="Distribuzione dei valori di result", xlab="Valore", ylab="Frequenza")
+```
+
+## Strategia Priority
+
+Ogni giocatore gioca il numero minimo di carte causalmente.
+
+```{r}
+data_prio <- read.csv("results_priority.csv")
+summary(data_prio)
+```
+```{r}
+freq <- table(data_prio$cards)
+
+freq_zero <- as.numeric(freq[names(freq) == 0])
+perc_zero <- freq_zero / nrow(data_prio) * 100
+```
+
+Numero di partite: `r nrow(data_prio)`
+
+La percentuale di vittorie è `r perc_zero`%
+
+
+## Grafici
+
+Distribuzione carte rimanenti.
+
+```{r}
+h <- hist(data_prio$cards, breaks=max(data_prio$cards), main="Distribuzione dei valori di result", xlab="Valore", ylab="Frequenza")
+```
